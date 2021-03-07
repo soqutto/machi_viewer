@@ -1,0 +1,30 @@
+{
+  "name": "machi_viewer",
+  "version": "0.0.0",
+  "description": "",
+  "private": true,
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack --mode=production",
+    "dev": "webpack-cli serve --mode development"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/soqutto/machi_viewer.git"
+  },
+  "author": "soqutto",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/soqutto/machi_viewer/issues"
+  },
+  "homepage": "https://github.com/soqutto/machi_viewer#readme",
+  "dependencies": {
+    "jquery": "^3.6.0",
+    "leaflet": "^1.7.1"
+  },
+  "devDependencies": {
+    "webpack": "^5.24.3",
+    "webpack-cli": "^4.5.0",
+    "webpack-dev-server": "^3.11.2"
+  }
+}
