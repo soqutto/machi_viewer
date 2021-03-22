@@ -77,8 +77,7 @@ class TownArea{
 }
 
 class TownSubArea{
-    constructor(parent, townId, townName, townSubName, townNumber){
-        this.parent = parent;
+    constructor(townId, townName, townSubName, townNumber){
         this.normalizedTownId = townId;
         this.townId = [townId]
         this.aliases = 1;
