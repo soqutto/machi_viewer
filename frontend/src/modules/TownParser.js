@@ -43,7 +43,8 @@ class TownParser{
             if(!this.city.hasTownArea(townName)){
                 this.city.addTownArea(gp.KIHON1, townName);
             }
-            this.city.town(townName).addTownSubArea(gp.KCODE1, townName, townSubName, townNumber);
+            this.city.getTownByName(townName)
+                     .addTownSubArea(gp.KCODE1, townName, townSubName, townNumber);
 
 
         }

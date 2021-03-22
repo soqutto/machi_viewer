@@ -38,7 +38,7 @@ class City{
         }
     }
 
-    town(townName){
+    getTownByName(townName){
         if(this.townNameHash.hasOwnProperty(townName)){
             return this.towns[this.townNameHash[townName]];
         } else {
