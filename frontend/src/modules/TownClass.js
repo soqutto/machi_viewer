@@ -23,11 +23,15 @@ class City{
 
     addTownArea(townAreaId, townName){
         if(!this.towns.hasOwnProperty(townAreaId)){
-            this.towns[townAreaId] = new TownArea(this, townAreaId, townName);
+            this.towns[townAreaId] = new TownArea(townAreaId, townName);
             this.townNameHash[townName] = townAreaId;
         }
 
         return this.towns[townAreaId];
+    }
+
+    setHash(townId, townAreaId){
+        this.townHash[townId] = townAreaId;
     }
 
     hasTownArea(townName){
@@ -40,7 +44,7 @@ class City{
 
     getTownById(townId){
         if(this.townHash.hasOwnProperty(townId)){
-            return this.towns[this.townHash[townId][0]]
+            return this.towns[this.townHash[townId]]
         } else {
             return null;
         }
@@ -62,15 +66,14 @@ class City{
         }
     }
 
-    getTownSubAreaByName(townFullName){
-        return undefined;
-}
+    //getTownSubAreaByName(townFullName){
+    //    return undefined;
+    //}
 
 }
 
 class TownArea{
-    constructor(parent, townAreaId, townName){
-        this.parent = parent;
+    constructor(townAreaId, townName){
         this.townAreaId = townAreaId;
         this.townName = townName;
         this.townSubAreaNum = 0;
@@ -79,21 +82,21 @@ class TownArea{
         this.townSubAreas = {};
     }
 
-    addTownSubArea(townId, townName, townSubName, townNumber){
+    addTownSubArea(parent, townId, townName, townSubName, townNumber){
         const townFullName = townName + (townSubName ? townSubName : "");
 
         if(this.townSubAreaNameHash.hasOwnProperty(townFullName)){
             const subarea = this.townSubAreas[this.townSubAreaNameHash[townName]];
             subarea.addAliasId(townId);
             this.townSubAreaHash[townId] = subarea.id;
-            this.parent.townHash[townId] = [this.townAreaId, subarea.id, townFullName];
+            parent.setHash(townId, this.townAreaId);
         } else {
             this.townSubAreas[townId] =
                 new TownSubArea(townId, townName, townSubName, townNumber);
             this.townSubAreaNum++;
             this.townSubAreaHash[townId] = townId;
             this.townSubAreaNameHash[townFullName] = townId;
-            this.parent.townHash[townId] = [this.townAreaId, townId, townFullName];
+            parent.setHash(townId, this.townAreaId);
         }
     }
 
