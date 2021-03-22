@@ -38,6 +38,14 @@ class City{
         }
     }
 
+    getTownById(townId){
+        if(this.townHash.hasOwnProperty(townId)){
+            return this.towns[this.townHash[townId][0]]
+        } else {
+            return null;
+        }
+    }
+
     getTownByName(townName){
         if(this.townNameHash.hasOwnProperty(townName)){
             return this.towns[this.townNameHash[townName]];
@@ -46,6 +54,17 @@ class City{
         }
     }
 
+    getTownSubAreaById(townId){
+        if(this.townHash.hasOwnProperty(townId)){
+            return this.getTownById(townId).getTownSubAreaById(townId);
+        } else {
+            return null;
+        }
+    }
+
+    getTownSubAreaByName(townFullName){
+        return undefined;
+}
 
 }
 
@@ -54,7 +73,8 @@ class TownArea{
         this.parent = parent;
         this.townAreaId = townAreaId;
         this.townName = townName;
-        this.townNum = 0;
+        this.townSubAreaNum = 0;
+        this.townSubAreaHash = {};
         this.townSubAreaNameHash = {};
         this.townSubAreas = {};
     }
@@ -65,13 +85,31 @@ class TownArea{
         if(this.townSubAreaNameHash.hasOwnProperty(townFullName)){
             const subarea = this.townSubAreas[this.townSubAreaNameHash[townName]];
             subarea.addAliasId(townId);
+            this.townSubAreaHash[townId] = subarea.id;
             this.parent.townHash[townId] = [this.townAreaId, subarea.id, townFullName];
         } else {
             this.townSubAreas[townId] =
-                new TownSubArea(this, townId, townName, townSubName, townNumber);
-            this.townNum++;
+                new TownSubArea(townId, townName, townSubName, townNumber);
+            this.townSubAreaNum++;
+            this.townSubAreaHash[townId] = townId;
             this.townSubAreaNameHash[townFullName] = townId;
             this.parent.townHash[townId] = [this.townAreaId, townId, townFullName];
+        }
+    }
+
+    getTownSubAreaById(townId){
+        if(this.townSubAreaHash.hasOwnProperty(townId)){
+            return this.townSubAreas[this.townSubAreaHash[townId]];
+        } else {
+            return null;
+        }
+    }
+
+    getTownSubAreaByName(townFullName){
+        if(this.townSubAreaNameHash.hasOwnProperty(townFullName)){
+            return this.townSubAreas[this.townSubAreaNameHash[townFullName]];
+        } else {
+            return null;
         }
     }
 }
