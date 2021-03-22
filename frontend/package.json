@@ -25,8 +25,13 @@
     "topojson": "^3.0.2"
   },
   "devDependencies": {
+    "@babel/cli": "^7.13.10",
+    "@babel/core": "^7.13.10",
+    "@babel/node": "^7.13.10",
+    "@babel/preset-env": "^7.13.10",
     "css-loader": "^5.1.1",
     "file-loader": "^6.2.0",
+    "node-fetch": "^2.6.1",
     "style-loader": "^2.0.0",
     "url-loader": "^4.1.1",
     "webpack": "^5.24.3",
