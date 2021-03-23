@@ -52,6 +52,7 @@ class TownParser{
     isEmpty(){ return (this.jsonData == null ? true : false) }
 
     get json(){ return this.jsonData }
+    get hierarchy(){ return this.city }
 
 }
 
