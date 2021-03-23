@@ -1,5 +1,4 @@
-//import { map } from "leaflet";
-import {City, TownArea, TownSubArea} from "./TownClass"
+import {City} from "./TownClass"
 
 class TownParser{
     constructor(){
