@@ -86,7 +86,7 @@ class TownArea{
         const townFullName = townName + (townSubName ? townSubName : "");
 
         if(this.townSubAreaNameHash.hasOwnProperty(townFullName)){
-            const subarea = this.townSubAreas[this.townSubAreaNameHash[townName]];
+            const subarea = this.townSubAreas[this.townSubAreaNameHash[townFullName]];
             subarea.addAliasId(townId);
             this.townSubAreaHash[townId] = subarea.id;
             parent.setHash(townId, this.townAreaId);
