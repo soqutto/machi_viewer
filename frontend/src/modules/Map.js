@@ -9,6 +9,8 @@ import * as d3 from 'd3'
 import * as topojson from 'topojson'
 
 import TownParser from './TownParser'
+import TownColorizer from './TownColorizer'
+
 const map = L.map("map").setView([35.6492, 139.5493], 13);
 
 L.tileLayer("http://{s}.tile.osm.org/{z}/{x}/{y}.png", {
@@ -73,7 +75,11 @@ function createTownSvg(){
                                                 + -topLeft[1] + ")");
 
     townPolygons.attr("class", (d) => "town-" + d.properties.KCODE1)
-                .attr("fill", "skyblue")
+                .attr("fill", (d) => {
+                  const k = d.properties.KCODE1;
+                  const normalizedTownId = TownParser.city.getTownById(k).getTownSubAreaById(k).id;
+                  return TownColorizer.getColor(normalizedTownId);
+                })
                 .attr("stroke", "#666666")
                 .attr("stroke-width", "1.4")
                 .style("fill-opacity", 0.5)

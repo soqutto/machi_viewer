@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/soqutto/machi_viewer#readme",
   "dependencies": {
+    "chroma-js": "^2.1.1",
     "d3": "^6.6.0",
     "jquery": "^3.6.0",
     "leaflet": "^1.7.1",
