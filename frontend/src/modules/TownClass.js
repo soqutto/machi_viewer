@@ -34,6 +34,10 @@ class City{
         this.townHash[townId] = townAreaId;
     }
 
+    getTownAreaList(){
+        return this.towns;
+    }
+
     hasTownArea(townName){
         if(this.townNameHash.hasOwnProperty(townName)){
             return true;
@@ -98,6 +102,10 @@ class TownArea{
             this.townSubAreaNameHash[townFullName] = townId;
             parent.setHash(townId, this.townAreaId);
         }
+    }
+
+    getTownSubAreaList(){
+        return this.townSubAreas;
     }
 
     getTownSubAreaById(townId){
