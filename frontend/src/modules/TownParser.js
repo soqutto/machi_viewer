@@ -16,7 +16,7 @@ class TownParser{
         this.jsonData = data;
     }
 
-    parse(){
+    async parse(tp){
         this.city = new City(this.json.objects.city.geometries[0].properties, this.json.bbox);
 
         const regExpTownSubName = new RegExp('[０-９]+丁目$');
@@ -38,15 +38,12 @@ class TownParser{
                 townNumber = Number(regExpMatchNumber[0].replace(/[０-９]/g,
                     (str) => String.fromCharCode(str.charCodeAt(0) - 0xFEE0)));
             }
-            console.log(townName, townSubName);
 
             if(!this.city.hasTownArea(townName)){
                 this.city.addTownArea(gp.KIHON1, townName);
             }
             this.city.getTownByName(townName)
                      .addTownSubArea(this.city, gp.KCODE1, townName, townSubName, townNumber);
-
-
         }
     }
 
