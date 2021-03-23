@@ -24,8 +24,12 @@ class City{
     addTownArea(townAreaId, townName){
         if(!this.towns.hasOwnProperty(townAreaId)){
             this.towns[townAreaId] = new TownArea(townAreaId, townName);
-            this.townNameHash[townName] = townAreaId;
+        } else {
+            // If correspond town area is already exist,
+            // overwrite town name with latter appeared one.
+            this.towns[townAreaId].townName = townName;
         }
+        this.townNameHash[townName] = townAreaId;
 
         return this.towns[townAreaId];
     }
