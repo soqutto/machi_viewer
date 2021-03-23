@@ -35,8 +35,8 @@ class TownParser{
                 townName = S_NAME.substr(0, regExpMatch.index);
                 townSubName = regExpMatch[0];
                 const regExpMatchNumber = townSubName.match(regExpTownNumber);
-                townNumber = regExpMatchNumber[0].replace(/[０-９]/g,
-                    (str) => String.fromCharCode(str.charCodeAt(0) - 0xFEE0) );
+                townNumber = Number(regExpMatchNumber[0].replace(/[０-９]/g,
+                    (str) => String.fromCharCode(str.charCodeAt(0) - 0xFEE0)));
             }
             console.log(townName, townSubName);
 
