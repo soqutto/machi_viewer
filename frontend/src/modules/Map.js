@@ -14,8 +14,9 @@ import TownColorizer from './TownColorizer'
 const map = L.map("map").setView([35.6492, 139.5493], 13);
 
 L.tileLayer("http://{s}.tile.osm.org/{z}/{x}/{y}.png", {
-  attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> Contributors'
-               +' / '+'国勢調査町丁・字等別境界データセット(CODH/NICT)',
+  attribution: '&copy; <a href="http://osm.org/copyright" target="_blank">OpenStreetMap</a> contributors<br>'
+               +'<a href="https://geoshape.ex.nii.ac.jp/ka/" target="_blank">国勢調査町丁・字等別境界データセット(CODH)</a>',
+  minZoom: 5,
   maxZoom: 18
 }).addTo(map);
 
