@@ -39,8 +39,8 @@ function createTownSvg(){
 
   const cityFramePolygon = cityGroup.selectAll("path")
                            .data(geoJsonCity.features)
-                       .enter()
-                       .append("path");
+                           .enter()
+                           .append("path");
 
   const townGroup = cityGroup.append("g").attr("class", "leaflet-zoom-hide").attr("id", "town");
 
