@@ -9,6 +9,10 @@ class City{
         this.townNameHash = {};
         this.townHash = {};
 
+        this.area = 0;
+        this.population = 0;
+        this.households = 0;
+
         if(bbox != undefined) this.setBbox(bbox);
 
     }
@@ -88,24 +92,35 @@ class TownArea{
         this.townSubAreaHash = {};
         this.townSubAreaNameHash = {};
         this.townSubAreas = {};
+        this.area = 0;
+        this.population = 0;
+        this.households = 0;
     }
 
-    addTownSubArea(parent, townId, townName, townSubName, townNumber){
+    addTownSubArea(parent, townId, townName, townSubName, townNumber, area=0.0, population=0, households=0){
         const townFullName = townName + (townSubName ? townSubName : "");
 
         if(this.townSubAreaNameHash.hasOwnProperty(townFullName)){
             const subarea = this.townSubAreas[this.townSubAreaNameHash[townFullName]];
-            subarea.addAliasId(townId);
+            subarea.addAliasId(townId, population, households);
             this.townSubAreaHash[townId] = subarea.id;
             parent.setHash(townId, this.townAreaId);
         } else {
             this.townSubAreas[townId] =
-                new TownSubArea(townId, townName, townSubName, townNumber);
+                new TownSubArea(townId, townName, townSubName, townNumber, area, population, households);
             this.townSubAreaNum++;
             this.townSubAreaHash[townId] = townId;
             this.townSubAreaNameHash[townFullName] = townId;
             parent.setHash(townId, this.townAreaId);
         }
+
+        this.area += area;
+        this.population += population;
+        this.households += households;
+
+        parent.area += area;
+        parent.population += population;
+        parent.households += households;
     }
 
     getTownSubAreaList(){
@@ -127,10 +142,14 @@ class TownArea{
             return null;
         }
     }
+
+    get populationDensity(){
+        return this.population / (this.area / 1000000);
+    }
 }
 
 class TownSubArea{
-    constructor(townId, townName, townSubName, townNumber){
+    constructor(townId, townName, townSubName, townNumber, area=0.0, population=0, households=0){
         this.normalizedTownId = townId;
         this.townId = [townId]
         this.aliases = 1;
@@ -139,19 +158,26 @@ class TownSubArea{
         this.townSubName = townSubName;
         this.townNumber = townNumber;
         this.isNoNumbered = (townNumber == null ? true : false);
+        this.area = area;
+        this.population = population;
+        this.households = households;
     }
 
-    addAliasId(townId){
+    addAliasId(townId, area=0.0, population=0, households=0){
         if(!this.townId.includes(townId)){
             this.townId.push(townId);
             this.aliases++;
         }
         this.polygons++;
+
+        this.area += area;
+        this.population += population;
+        this.households += households;
     }
 
     get name() { return this.townName; }
     get subName() { return this.townSubName; }
-    get fullName() { return this.townName + this.townSubName; }
+    get fullName() { return this.townName + (this.townSubName ? this.townSubName : ''); }
 
     get subNameHalfWidth(){
         return this.townSubName.replace(/[！-～]/g,
@@ -159,7 +185,7 @@ class TownSubArea{
     }
 
     get fullNameHalfWidth(){
-        const ret = this.townName + this.townSubName;
+        const ret = this.fullName;
         return ret.replace(/[！-～]/g,
             (str) => String.fromCharCode(str.charCodeAt(0) - 0xFEE0));
     }
@@ -167,6 +193,10 @@ class TownSubArea{
     get num() { return this.townNumber; }
     get id() { return this.normalizedTownId; }
     get ids() { return this.townId; }
+
+    get populationDensity(){
+        return this.population / (this.area / 1000000);
+    }
 
 }
 
