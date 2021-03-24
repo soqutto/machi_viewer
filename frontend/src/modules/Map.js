@@ -10,6 +10,7 @@ import * as topojson from 'topojson'
 
 import TownParser from './TownParser'
 import TownColorizer from './TownColorizer'
+import TownCoordinate from './TownCoordinate'
 
 const map = L.map("map").setView([35.6492, 139.5493], 13);
 
@@ -26,6 +27,7 @@ const main = async () => {
   await TownParser.load('./topojson.test/h27ka13208.topojson');
   await TownParser.parse();
   await TownColorizer.createTable(TownParser.city.getTownAreaList());
+  await TownCoordinate.createTable(TownParser);
   createTownSvg();
 }
 
@@ -49,12 +51,30 @@ function createTownSvg(){
                        .enter()
                        .append("path");
 
+  const townLabelGroup = cityGroup.append("g").attr("class", "leaflet-zoom-hide").attr("id", "town-label");
+  const townSubAreaLabelGroup = cityGroup.append("g").attr("class", "leaflet-zoom-hide").attr("id", "townSubArea-label");
+
+  const townLabels = townLabelGroup.selectAll("circle")
+                     .data(Object.keys(TownCoordinate.getTownCenterPointTable()))
+                     .enter()
+                     .append("circle");
+  
+  const townSubAreaLabels = townSubAreaLabelGroup.selectAll("circle")
+                            .data(Object.keys(TownCoordinate.getTownSubAreaCenterPointTable()))
+                            .enter()
+                            .append("circle");
+
   map.on("moveend", update);
   update();
 
   function projectPoint(x, y){
     const point = map.latLngToLayerPoint(new L.LatLng(y, x));
     this.stream.point(point.x, point.y);
+  }
+
+  function project(x, y){
+    const point = map.latLngToLayerPoint(new L.LatLng(y, x));
+    return [point.x, point.y];
   }
 
   function update(){
@@ -86,6 +106,16 @@ function createTownSvg(){
                 .attr("stroke-width", "1.4")
                 .style("fill-opacity", 0.5)
                 .attr("d", path);
+
+    townLabels.attr("cx", (d) => project(...TownCoordinate.getTownCenterPoint(d))[0])
+              .attr("cy", (d) => project(...TownCoordinate.getTownCenterPoint(d))[1])
+              .attr("r", "10")
+              .attr("fill", "#333333");
+
+    townSubAreaLabels.attr("cx", (d) => project(...TownCoordinate.getTownSubAreaCenterPoint(d))[0])
+                     .attr("cy", (d) => project(...TownCoordinate.getTownSubAreaCenterPoint(d))[1])
+                     .attr("r", "3")
+                     .attr("fill", "#666666");
   }
 
 }
