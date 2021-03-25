@@ -4,7 +4,8 @@ import chroma from 'chroma-js'
 class TownColorizer{
     constructor(townAreaList, colorScheme = d3.schemeCategory10){
         this.baseColorTable = [];
-        this.colorTable = {};
+        this.townColorTable = {};
+        this.townSubAreaColorTable = {};
 
         colorScheme.forEach((colorCode) => {
             this.baseColorTable.push(chroma(colorCode));
@@ -19,21 +20,29 @@ class TownColorizer{
         let color = 0;
         keys.forEach((key) => {
             color %= this.baseColorTable.length;
+            this.townColorTable[key] = this.baseColorTable[color];
             let subcolor = 0;
             const townSubAreaList = townAreaList[key].getTownSubAreaList();
             const subAreaKeys = Object.keys(townSubAreaList);
             subAreaKeys.forEach((subkey) => {
-                this.colorTable[subkey] = this.baseColorTable[color].darken(subcolor * 0.3);
+                this.townSubAreaColorTable[subkey] = this.baseColorTable[color].darken(subcolor * 0.3);
                 subcolor++;
             });
             color++;
         });
-        console.log(this.colorTable);
     }
 
-    getColor(townId){
-        if(this.colorTable.hasOwnProperty(townId)){
-            return this.colorTable[townId].hex();
+    getTownColor(townId, factor=0){
+        if(this.townColorTable.hasOwnProperty(townId)){
+            return this.townColorTable[townId].brighten(factor).hex();
+        } else {
+            return "#333333";
+        }
+    }
+
+    getColor(townSubAreaId){
+        if(this.townSubAreaColorTable.hasOwnProperty(townSubAreaId)){
+            return this.townSubAreaColorTable[townSubAreaId].hex();
         } else {
             return "#333333";
         }

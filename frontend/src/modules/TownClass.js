@@ -146,6 +146,8 @@ class TownArea{
     get populationDensity(){
         return this.population / (this.area / 1000000);
     }
+
+    get name(){ return this.townName; }
 }
 
 class TownSubArea{
