@@ -1,0 +1,24 @@
+{
+  "name": "machi_viewer_backend",
+  "version": "0.0.0",
+  "description": "",
+  "main": "index.js",
+  "private": true,
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/soqutto/machi_viewer.git"
+  },
+  "bugs": {
+    "url": "https://github.com/soqutto/machi_viewer/issues"
+  },
+  "homepage": "https://github.com/soqutto/machi_viewer#readme",
+  "author": "soqutto",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.17.1",
+    "pg": "^8.5.1"
+  }
+}
