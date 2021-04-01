@@ -9,7 +9,7 @@ CREATE TABLE prefectures(
 
 DROP TABLE IF EXISTS cities;
 CREATE TABLE cities(
-    city_id CHAR(6),
+    city_id CHAR(5),
     pref_code INT,
     city_code INT,
     sityo_name VARCHAR(60),
