@@ -5,10 +5,28 @@ services:
     image: postgres:13.2
     ports:
       - "5432:5432"
+    volumes:
+      - ./database/sql_init:/docker-entrypoint-initdb.d
+    # - ./database/pgdata:/var/lib/postgresql/data
     environment:
       POSTGRES_USER: ${POSTGRES_USER} 
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD} 
       POSTGRES_DB: ${POSTGRES_DATABASE} 
       POSTGRES_INITDB_ARGS: "--encoding=UTF-8 --locale=C"
+    hostname: postgres
+    restart: always
+
+  pgadmin4:
+    container_name: pgadmin4
+    image: dpage/pdadmin4:latest
+    ports:
+      - "8027:80"
     volumes:
-      - ./database/sql_init:/docker-entrypoint-initdb.d
+      - ./database/pgadmin4:/var/lib/pgadmin
+    environment:
+      PGADMIN_DEFAULT_EMAIL: ${PGADMIN_DEFAULT_EMAIL}
+      PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_DEFAULT_PASSWORD}
+    hostname: pgadmin4
+    depends_on:
+      - postgres
+    restart: always
