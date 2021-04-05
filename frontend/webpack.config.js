@@ -42,7 +42,7 @@ module.exports = {
             options: {
               sourceMap: true,
               postcssOptions: {
-                plugins: ['autoprefixer'],
+                plugins: ['postcss-100vh-fix', 'autoprefixer'],
               },
             },
           },
