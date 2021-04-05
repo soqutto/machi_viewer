@@ -7,16 +7,49 @@
   <title>Hello, world!</title>
 </head>
 <body>
-  <header>
-    <div class="navbar navbar-dark bg-dark">
-      <div class="container d-flex justify-content-between">
-        <span class="navbar-brand align-items-center">
-          <i class="bi-map-fill"></i>
-          <strong>まちビューア(β)</strong>
-        </span>
+  <div id="wrapper" class="container min-vw-100 min-vh-100 no-gutters">
+    <header class="d-flex vw-100">
+      <nav class="container-fluid navbar navbar-dark bg-dark">
+        <div class="d-flex justify-content-between">
+          <span class="navbar-brand align-items-center">
+            <i class="bi-map-fill"></i>
+            <strong>まちビューア(β)</strong>
+          </span>
+        </div>
+      </nav>
+    </header>
+    <nav class="container-fluid navbar d-flex bg-light">
+          <div class="col-7">
+            <span class="button">
+              <a class="btn btn-light border border-dark">
+                <i class="bi-folder2-open"></i>&nbsp;開く
+              </a>
+            </span>
+            <span class="text">
+            ○○県○○市
+            </span>
+          </div>
+          <div class="col-sm-5 text-right">
+            <a class="btn btn-light border border-dark">
+              <i class="bi-gear"></i>&nbsp;設定
+            </a>
+            <a type="button" class="btn btn-light border border-dark">
+              <i class="bi-question-circle"></i>&nbsp;ヘルプ
+            </a>
+            <a type="button" class="btn btn-light border border-dark">
+              <i class="bi-info-circle"></i>このサイトについて
+            </a>
       </div>
-    </div>
-  </header>
-  <div class="container-fluid"></div>
+    </nav>
+    <div class="container-fluid" id="map"></div>
+    <footer id="footer" class="navbar-dark bg-dark d-flex justify-content-between">
+      <div class="">
+        &copy; 2021 tsuchiden
+      </div>
+      <div>
+        お問い合わせ
+      </div>
+    </footer>
+  </div>
 </body>
 </html>
