@@ -4,7 +4,7 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = {
   // Mode
-  mode: 'development',
+  mode: process.env.NODE_ENV || 'development',
 
   // Entrypoints
   entry: {
@@ -22,6 +22,12 @@ module.exports = {
   // Module settings
   module: {
     rules: [
+      // JS
+      //{
+      //  test: /\.js$/,
+      //  loader: 'babel-loader',
+      //  exclude: /node_modules/
+      //},
       // SCSS
       {
         test: /\.scss$/,
