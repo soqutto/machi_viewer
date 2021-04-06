@@ -12,6 +12,18 @@ body {
     grid-template-rows: auto auto 1fr auto;
 }
 
+#map-area {
+    padding: 0;
+}
+
+#map {
+    height: 100%;
+}
+
+#searchbox {
+    text-align: center;
+}
+
 #footer {
     color: #fff;
 }
