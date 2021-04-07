@@ -1,23 +1,37 @@
 <template>
-  <div id="app">
-    <img src="./assets/logo.png">
-    <router-view/>
+  <div id="wrapper" class="container min-vw-100 min-vh-100 no-gutters">
+    <Header></Header>
+    <NavBar></NavBar>
+    <MapArea></MapArea>
+    <Footer></Footer>
   </div>
 </template>
 
 <script>
+import 'bootstrap'
+import Header from './components/Header.vue'
+import NavBar from './components/NavBar.vue'
+import MapArea from './components/MapArea.vue'
+// import MapView from './components/MapView.vue'
+import Footer from './components/Footer.vue'
+
 export default {
-  name: 'App'
+  components: {
+    Header, NavBar, MapArea, Footer
+  }
+
 }
 </script>
 
 <style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+@import 'bootstrap/dist/css/bootstrap.css';
+@import 'bootstrap-icons/font/bootstrap-icons.css';
+
+#wrapper {
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-rows: auto auto 1fr auto;
 }
+
 </style>
