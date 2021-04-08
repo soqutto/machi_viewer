@@ -7,7 +7,7 @@
       v-bind:class="{
           'btn-primary': buttonStyle == 'primary',
           'btn-light': buttonStyle == 'light',
-          'active': this.$root.$data.state.modal[bindedDialogName].shown
+          'active': isActive
       }"
       role="button">
       <template v-if="showIcon && biIconClassName">
@@ -39,6 +39,12 @@ export default {
   methods: {
     toggle: function (event) {
       this.$root.toggleDialogState(this.bindedDialogName)
+    }
+  },
+
+  computed: {
+    isActive: function () {
+      return this.state.modal[this.bindedDialogName].isShown
     }
   }
 }
