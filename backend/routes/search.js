@@ -38,7 +38,7 @@ router.get('/', async function(req, res, next){
         params.push('%%');
     }
 
-    if('pref' in req.query){
+    if('pref' in req.query && req.query.pref !== ''){
         sendQuery += queryStringSpecifiedPrefecture;
         params.push(Number(req.query.pref));
     }
