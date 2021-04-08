@@ -9,7 +9,7 @@
       </div>
       <div class="d-flex justify-content-between">
         <span id="header-comment">
-          町丁ごとに色分けした地図の閲覧サービス
+          町丁ごとに色分けした地図を自動生成
         </span>
       </div>
     </nav>
