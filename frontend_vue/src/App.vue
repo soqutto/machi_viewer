@@ -12,7 +12,6 @@ import 'bootstrap'
 import Header from './components/Header.vue'
 import NavBar from './components/NavBar.vue'
 import MapArea from './components/MapArea.vue'
-// import MapView from './components/MapView.vue'
 import Footer from './components/Footer.vue'
 
 export default {
