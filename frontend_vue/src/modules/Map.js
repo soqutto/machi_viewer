@@ -23,20 +23,22 @@ export const main = async () => {
     maxZoom: 18
   }).addTo(map);
 
-  const citySvg = d3.select(map.getPanes().overlayPane).append("svg");
-  await TownParser.load('./topojson.test/h27ka13208.topojson');
+  await TownParser.load('/api/getjson?id=13208');
   await TownParser.parse();
   await TownColorizer.createTable(TownParser.city.getTownAreaList());
   await TownCoordinate.createTable(TownParser);
+/*
   createTownSvg();
 }
 
 function createTownSvg(){
+*/
   const geoJsonCity = topojson.feature(TownParser.json, TownParser.json.objects.city);
   const geoJsonTown = topojson.feature(TownParser.json, TownParser.json.objects.town);
   const transform = d3.geoTransform({point: projectPoint});
   const path = d3.geoPath().projection(transform);
 
+  const citySvg = d3.select(map.getPanes().overlayPane).append("svg");
   const cityGroup = citySvg.append("g").attr("class", "leaflet-zoom-hide").attr("id", "city");
 
   const cityFramePolygon = cityGroup.selectAll("path")
