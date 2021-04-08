@@ -16,19 +16,3 @@
     </div>
   </div>
 </template>
-
-<style>
-.modal-bg {
-  z-index: 2;
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  margin: auto;
-
-  background-color: rgba(100, 100, 100, 0.7);
-}
-</style>
