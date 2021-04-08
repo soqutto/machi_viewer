@@ -1,6 +1,7 @@
+/* eslint-disable */
 import L from 'leaflet'
 import 'leaflet/dist/leaflet.css'
-import '../css/map.css'
+// import '../css/map.css'
 import iconRetinaUrl  from 'leaflet/dist/images/marker-icon-2x.png'
 import iconUrl        from 'leaflet/dist/images/marker-icon.png'
 import shadowUrl      from 'leaflet/dist/images/marker-shadow.png'
@@ -12,18 +13,17 @@ import TownParser from './TownParser'
 import TownColorizer from './TownColorizer'
 import TownCoordinate from './TownCoordinate'
 
-const map = L.map("map").setView([35.6492, 139.5493], 13);
+export const main = async () => {
+  const map = L.map("map").setView([35.6492, 139.5493], 13);
 
-L.tileLayer("http://{s}.tile.osm.org/{z}/{x}/{y}.png", {
-  attribution: '&copy; <a href="http://osm.org/copyright" target="_blank">OpenStreetMap</a> contributors<br>'
-               +'<a href="https://geoshape.ex.nii.ac.jp/ka/" target="_blank">国勢調査町丁・字等別境界データセット(CODH)</a>',
-  minZoom: 5,
-  maxZoom: 18
-}).addTo(map);
+  L.tileLayer("http://{s}.tile.osm.org/{z}/{x}/{y}.png", {
+    attribution: '&copy; <a href="http://osm.org/copyright" target="_blank">OpenStreetMap</a> contributors<br>'
+                 +'<a href="https://geoshape.ex.nii.ac.jp/ka/" target="_blank">国勢調査町丁・字等別境界データセット(CODH)</a>',
+    minZoom: 5,
+    maxZoom: 18
+  }).addTo(map);
 
-const citySvg = d3.select(map.getPanes().overlayPane).append("svg");
-
-const main = async () => {
+  const citySvg = d3.select(map.getPanes().overlayPane).append("svg");
   await TownParser.load('./topojson.test/h27ka13208.topojson');
   await TownParser.parse();
   await TownColorizer.createTable(TownParser.city.getTownAreaList());

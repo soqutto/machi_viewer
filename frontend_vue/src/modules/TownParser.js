@@ -1,3 +1,4 @@
+/* eslint-disable */
 import {City} from "./TownClass"
 
 class TownParser{
@@ -10,7 +11,7 @@ class TownParser{
 
     async load(jsonURI){
         this.jsonFileURI = jsonURI;
-        const response = await fetch(this.jsonFileURI);
+        const response = await fetch(this.jsonFileURI, {mode: 'no-cors'});
         const data = await response.json();
         this.jsonData = data;
     }

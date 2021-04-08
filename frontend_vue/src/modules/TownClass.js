@@ -1,3 +1,4 @@
+/* eslint-disable */
 class City{
     constructor(properties, bbox){
         this.prefectureId = properties.PREF;

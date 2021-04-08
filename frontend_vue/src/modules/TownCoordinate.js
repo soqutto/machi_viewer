@@ -1,3 +1,4 @@
+/* eslint-disable */
 class TownCoordinate{
     constructor(){
         this.townBboxTable = {};
