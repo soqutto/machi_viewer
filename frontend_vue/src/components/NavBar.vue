@@ -1,28 +1,45 @@
 <template>
   <nav class="container-fluid navbar d-flex bg-light">
-    <div class="col-7">
-      <span class="button">
-        <a
-          class="btn btn-light border border-dark"
-          data-toggle="modal"
-          data-target="#search-modal"
-          role="button"
-        >
-          <i class="bi-folder2-open"></i>&nbsp;開く
-        </a>
-      </span>
+    <div class="col-sm-6">
+      <nav-bar-modal-button
+        v-bind:show-icon="true"
+        bi-icon-class-name="bi-folder2-open"
+        button-style="primary"
+        button-label="開く"></nav-bar-modal-button>
       <span class="text"> ○○県○○市 </span>
     </div>
-    <div class="col-sm-5 text-right">
-      <a class="btn btn-light border border-dark" role="button">
-        <i class="bi-gear"></i>&nbsp;設定
-      </a>
-      <a type="button" class="btn btn-light border border-dark" role="button">
-        <i class="bi-question-circle"></i>&nbsp;ヘルプ
-      </a>
-      <a type="button" class="btn btn-light border border-dark" role="button">
-        <i class="bi-info-circle"></i>このサイトについて
-      </a>
+    <div class="col-sm-6 text-right">
+      <nav-bar-modal-button
+        v-bind:show-icon="true"
+        bi-icon-class-name="bi-gear"
+        button-style="light"
+        button-label="設定"></nav-bar-modal-button>
+      <nav-bar-modal-button
+        v-bind:show-icon="true"
+        bi-icon-class-name="bi-question-circle"
+        button-style="light"
+        button-label="ヘルプ"></nav-bar-modal-button>
+      <nav-bar-modal-button
+        v-bind:show-icon="true"
+        bi-icon-class-name="bi-info-circle"
+        button-style="light"
+        button-label="このサイトについて"></nav-bar-modal-button>
     </div>
   </nav>
 </template>
+
+<script>
+import NavBarModalButton from './NavBarModalButton'
+
+export default {
+  components: {
+    NavBarModalButton
+  }
+}
+</script>
+
+<style scoped>
+nav {
+  border-bottom: 1px solid black;
+}
+</style>
