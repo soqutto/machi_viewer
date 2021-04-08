@@ -18,7 +18,6 @@ export default {
   components: {
     Header, NavBar, MapArea, Footer
   }
-
 }
 </script>
 

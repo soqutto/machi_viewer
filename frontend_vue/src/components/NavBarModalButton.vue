@@ -1,17 +1,22 @@
 <template>
   <span class="modal-button">
-    <a class="btn border border-dark"
-       v-bind:class="{
+    <button
+      type="button"
+      v-on:click="toggle"
+      class="btn border border-dark"
+      v-bind:class="{
           'btn-primary': buttonStyle == 'primary',
-          'btn-light': buttonStyle == 'light'
-          }" role="button">
+          'btn-light': buttonStyle == 'light',
+          'active': this.$root.$data.state.modal[bindedDialogName].shown
+      }"
+      role="button">
       <template v-if="showIcon && biIconClassName">
         <i :class="biIconClassName"></i>
       </template>
       <template v-if="buttonLabel">
         {{buttonLabel}}
       </template>
-    </a>
+    </button>
   </span>
 </template>
 
@@ -21,7 +26,20 @@ export default {
     showIcon: Boolean,
     biIconClassName: String,
     buttonStyle: String,
-    buttonLabel: String
+    buttonLabel: String,
+    bindedDialogName: String
+  },
+
+  data () {
+    return {
+      state: this.$root.$data.state
+    }
+  },
+
+  methods: {
+    toggle: function (event) {
+      this.$root.toggleDialogState(this.bindedDialogName)
+    }
   }
 }
 </script>
