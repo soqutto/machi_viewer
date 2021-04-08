@@ -1,6 +1,6 @@
 <template>
   <div v-if="isShown" class="modal-bg">
-    <help-dialog v-if="this.state.modal.helpDialog.shown"></help-dialog>
+    <help-dialog v-if="this.state.modal.helpDialog.isShown"></help-dialog>
   </div>
 </template>
 
@@ -20,7 +20,7 @@ export default {
 
   computed: {
     isShown: function () {
-      return this.state.modal.shown
+      return this.state.modal.isShown
     }
   }
 }
