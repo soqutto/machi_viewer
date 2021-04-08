@@ -3,20 +3,8 @@ const router = express.Router();
 const {getSQLClient} = require('../database/SQLClient');
 
 const queryString =
-    `SELECT city_id, pref_name, sityo_name, gst_name, css_name
-     FROM cities, prefectures
-     WHERE
-      cities.pref_code = prefectures.pref_code
-     AND 
-      (prefectures.pref_name ||
-       COALESCE(sityo_name, '') ||
-       COALESCE(gst_name, '') ||
-       COALESCE(css_name, '')) LIKE $1
-    `;
-
-const queryStringSpecifiedPrefecture =
-    `AND
-      prefectures.pref_code = $2
+    `SELECT pref_code, pref_name
+     FROM prefectures
     `;
 
 router.get('/', async function(req, res, next){
@@ -30,21 +18,9 @@ router.get('/', async function(req, res, next){
 
     // Parameter check
     let sendQuery = queryString;
-    const params = [];
-
-    if('name' in req.query){
-        params.push('%' + req.query.name + '%');
-    } else {
-        params.push('%%');
-    }
-
-    if('pref' in req.query && req.query.pref !== ''){
-        sendQuery += queryStringSpecifiedPrefecture;
-        params.push(Number(req.query.pref));
-    }
 
     // Send query to the database
-    const searchResult = await client.execute(sendQuery, params).catch((e) => {
+    const prefList = await client.execute(sendQuery).catch((e) => {
         console.error("Failed to send query to the database.")
         console.error(e);
         res.sendStatus(500);
@@ -55,7 +31,7 @@ router.get('/', async function(req, res, next){
         console.error("Failed to release connection handle.")
         console.error(e);
     })
-    res.json(searchResult);
+    res.json(prefList);
 });
 
 module.exports = router;
