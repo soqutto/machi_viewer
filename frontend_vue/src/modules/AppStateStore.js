@@ -1,12 +1,12 @@
 const state = {
   debug: process.env.NODE_ENV !== 'production',
   dialogs: [
-    "gettingStarted",
-    "openDialog",
-    "settingDialog",
-    "helpDialog",
-    "aboutDialog",
-    "loading"
+    'gettingStarted',
+    'openDialog',
+    'settingDialog',
+    'helpDialog',
+    'aboutDialog',
+    'loading'
   ],
   state: {
     modal: {
@@ -45,7 +45,7 @@ const state = {
       this.state.modal[dialogName].isShown = false
     } else if (this.state.modal.isShown) {
       for (const dialog of this.dialogs) {
-        if (dialog != dialogName) this.state.modal[dialog].isShown = false
+        if (dialog !== dialogName) this.state.modal[dialog].isShown = false
         else this.state.modal[dialog].isShown = true
       }
     } else {
