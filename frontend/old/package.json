@@ -1,0 +1,67 @@
+{
+  "name": "machi_viewer",
+  "version": "0.0.0",
+  "description": "Choropleth town map browser in Web",
+  "private": true,
+  "scripts": {
+    "dev": "cross-env NODE_ENV=development webpack-cli serve --open --hot",
+    "build": "cross-env NODE_ENV=production webpack --progress --hide-modules",
+    "builda": "webpack --mode=production",
+    "deva": "webpack-cli serve --mode development"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/soqutto/machi_viewer.git"
+  },
+  "author": "soqutto",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/soqutto/machi_viewer/issues"
+  },
+  "homepage": "https://github.com/soqutto/machi_viewer#readme",
+  "dependencies": {
+    "bootstrap": "^4.6.0",
+    "bootstrap-icons": "^1.4.1",
+    "chroma-js": "^2.1.1",
+    "d3": "^6.6.0",
+    "jquery": "^3.6.0",
+    "leaflet": "^1.7.1",
+    "popper.js": "^1.16.1",
+    "topojson": "^3.0.2",
+    "vue": "^2.6.12",
+    "vue-router": "^3.5.1"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.13.10",
+    "@babel/core": "^7.13.10",
+    "@babel/node": "^7.13.10",
+    "@babel/preset-env": "^7.13.10",
+    "autoprefixer": "^10.2.5",
+    "babel-loader": "^8.2.2",
+    "cross-env": "^7.0.3",
+    "css-loader": "^5.1.1",
+    "fibers": "^5.0.0",
+    "file-loader": "^6.2.0",
+    "html-webpack-plugin": "^5.3.1",
+    "mini-css-extract-plugin": "^1.4.0",
+    "node-fetch": "^2.6.1",
+    "postcss": "^8.2.9",
+    "postcss-100vh-fix": "^1.0.2",
+    "postcss-loader": "^5.2.0",
+    "sass": "^1.32.8",
+    "sass-loader": "^11.0.1",
+    "style-loader": "^2.0.0",
+    "url-loader": "^4.1.1",
+    "vue-loader": "^15.9.6",
+    "vue-template-compiler": "^2.6.12",
+    "webpack": "^5.24.3",
+    "webpack-cli": "^4.5.0",
+    "webpack-dev-middleware": "^4.1.0",
+    "webpack-dev-server": "^3.11.2"
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not ie <= 8"
+  ]
+}
