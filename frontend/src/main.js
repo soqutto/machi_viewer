@@ -18,6 +18,7 @@ new Vue({
 
   data () {
     return {
+      version: AppStateStore.version,
       state: AppStateStore.state
     }
   },

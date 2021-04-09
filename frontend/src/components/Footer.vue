@@ -1,10 +1,10 @@
 <template>
   <footer id="footer" class="navbar-dark bg-dark d-flex justify-content-between">
     <div class="">
-      &copy; 2021 tsuchiden (@soqutto)
+      &copy; 2021 tsuchiden
     </div>
     <div>
-      Github / お問い合わせ
+      ver. {{this.$root.$data.version}} &nbsp; Github / お問い合わせ
     </div>
   </footer>
 </template>
