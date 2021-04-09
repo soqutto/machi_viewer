@@ -14,8 +14,8 @@
         ></search-form>
       </div>
       <div class="modal-body">
-        <table class="table">
-          <thead>
+        <table class="table table-sm">
+          <thead class="thead-light">
             <th scope="col">ID</th>
             <th scope="col">都道府県</th>
             <th scope="col">市区町村</th>
