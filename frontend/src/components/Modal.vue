@@ -1,6 +1,6 @@
 <template>
-  <div v-if="isShown" class="modal-bg">
-    <help-dialog v-if="this.state.modal.helpDialog.isShown"></help-dialog>
+  <div v-show="isShown" class="modal-bg">
+    <help-dialog v-show="this.state.modal.helpDialog.isShown"></help-dialog>
   </div>
 </template>
 
