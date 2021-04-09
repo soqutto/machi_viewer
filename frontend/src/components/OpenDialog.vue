@@ -34,6 +34,9 @@
           </template>
         </table>
       </div>
+      <div class="modal-footer">
+        {{this.resultCount}} 件 見つかりました
+      </div>
     </div>
   </div>
 </template>
@@ -65,6 +68,7 @@ export default {
     textChanged (inputText) {
       this.inputText = inputText
     },
+
     prefectureChanged (selectedPrefCode) {
       axios.get(requestURL, {
         params: {
@@ -84,6 +88,10 @@ export default {
           new RegExp(this.inputText)
         )
       })
+    },
+
+    resultCount: function () {
+      return this.filteredResult.length
     }
   }
 }
