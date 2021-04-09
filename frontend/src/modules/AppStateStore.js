@@ -11,9 +11,9 @@ const state = {
   ],
   state: {
     modal: {
-      isShown: false,
+      isShown: true,
       gettingStarted: {
-        isShown: false
+        isShown: true
       },
       openDialog: {
         isShown: false

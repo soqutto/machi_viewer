@@ -1,17 +1,21 @@
 <template>
   <div v-show="isShown" class="modal-bg">
+    <getting-started v-show="this.state.modal.gettingStarted.isShown"></getting-started>
     <open-dialog v-show="this.state.modal.openDialog.isShown"></open-dialog>
     <help-dialog v-show="this.state.modal.helpDialog.isShown"></help-dialog>
   </div>
 </template>
 
 <script>
+import GettingStarted from './GettingStarted'
 import OpenDialog from './OpenDialog'
 import HelpDialog from './HelpDialog'
 
 export default {
   components: {
-    OpenDialog, HelpDialog
+    GettingStarted,
+    OpenDialog,
+    HelpDialog
   },
 
   data () {
