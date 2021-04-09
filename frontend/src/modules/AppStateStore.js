@@ -36,7 +36,14 @@ const state = {
   setDialogState (dialogName, bool) {
     if (this.debug) console.log('setDialogState triggered with', dialogName, bool)
     this.state.modal.isShown = bool
-    this.state.modal[dialogName].isShown = bool
+    if (bool === true) {
+      for (const dialog of this.dialogs) {
+        if (dialog !== dialogName) this.state.modal[dialog].isShown = false
+        else this.state.modal[dialog].isShown = true
+      }
+    } else {
+      this.state.modal[dialogName].isShown = false
+    }
   },
 
   toggleDialogState (dialogName) {

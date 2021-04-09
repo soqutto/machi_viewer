@@ -3,9 +3,7 @@
     <div class="modal-content">
       <div class="modal-header">
         <h2>sample content</h2>
-        <button type="button" class="close" aria-label="close">
-          <span aria-hidden="true">&times;</span>
-        </button>
+        <ModalCloseButton bindedDialogName="helpDialog"></ModalCloseButton>
       </div>
       <div class="modal-body">
         <h3>sample section</h3>
@@ -16,3 +14,13 @@
     </div>
   </div>
 </template>
+
+<script>
+import ModalCloseButton from './ModalCloseButton'
+
+export default {
+  components: {
+    ModalCloseButton
+  }
+}
+</script>

@@ -3,9 +3,7 @@
     <div class="modal-content fixed-height">
       <div class="modal-header">
         <h2>市区町村を検索</h2>
-        <button type="button" class="close" aria-label="close">
-          <span aria-hidden="true">&times;</span>
-        </button>
+        <ModalCloseButton bindedDialogName="openDialog"></ModalCloseButton>
       </div>
       <div class="modal-header">
         <search-form
@@ -45,12 +43,14 @@
 </template>
 
 <script>
+import ModalCloseButton from './ModalCloseButton'
 import SearchForm from './SearchForm'
 const axios = require('axios')
 const requestURL = '/api/search'
 
 export default {
   components: {
+    ModalCloseButton,
     SearchForm
   },
 
