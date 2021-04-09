@@ -5,7 +5,7 @@
     </div>
     <div>
       ver. {{this.$root.$data.version}} &nbsp;
-      <a target="_blank" href="https://github.com/soqutto/machi_viewer/">Github</a> / 
+      <a target="_blank" href="https://github.com/soqutto/machi_viewer/">Github</a> /
       お問い合わせ
     </div>
   </footer>
