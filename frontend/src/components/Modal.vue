@@ -1,15 +1,17 @@
 <template>
   <div v-show="isShown" class="modal-bg">
+    <open-dialog v-show="this.state.modal.openDialog.isShown"></open-dialog>
     <help-dialog v-show="this.state.modal.helpDialog.isShown"></help-dialog>
   </div>
 </template>
 
 <script>
+import OpenDialog from './OpenDialog'
 import HelpDialog from './HelpDialog'
 
 export default {
   components: {
-    HelpDialog
+    OpenDialog, HelpDialog
   },
 
   data () {
