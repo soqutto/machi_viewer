@@ -33,6 +33,9 @@
             </tr>
           </template>
         </table>
+        <div v-show="this.resultCount === 0" id="not-found" class="container">
+          条件に一致するデータが存在しません。
+        </div>
       </div>
       <div class="modal-footer">
         {{this.resultCount}} 件 見つかりました
@@ -103,5 +106,8 @@ export default {
 }
 td > button {
   float: right;
+}
+#not-found {
+  text-align: center;
 }
 </style>
