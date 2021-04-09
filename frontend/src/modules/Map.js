@@ -152,5 +152,3 @@ function createTownSvg(){
   }
 
 }
-
-main();
