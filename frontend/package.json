@@ -25,6 +25,7 @@
     "popper.js": "^1.16.1",
     "topojson": "^3.0.2",
     "vue": "^2.5.2",
+    "vue-mq": "^1.0.1",
     "vue-router": "^3.0.1"
   },
   "devDependencies": {
