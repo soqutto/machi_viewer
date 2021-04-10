@@ -1,6 +1,7 @@
 const state = {
   debug: process.env.NODE_ENV !== 'production',
   version: '0.1.0',
+  buildDate: '2021/4/10',
   dialogs: [
     'gettingStarted',
     'openDialog',

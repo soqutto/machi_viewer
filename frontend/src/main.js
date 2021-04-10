@@ -19,6 +19,7 @@ new Vue({
   data () {
     return {
       version: AppStateStore.version,
+      buildDate: AppStateStore.buildDate,
       state: AppStateStore.state
     }
   },

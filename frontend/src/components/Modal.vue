@@ -3,6 +3,7 @@
     <getting-started v-show="this.state.modal.gettingStarted.isShown"></getting-started>
     <open-dialog v-show="this.state.modal.openDialog.isShown"></open-dialog>
     <help-dialog v-show="this.state.modal.helpDialog.isShown"></help-dialog>
+    <about-dialog v-show="this.state.modal.aboutDialog.isShown"></about-dialog>
   </div>
 </template>
 
@@ -10,12 +11,14 @@
 import GettingStarted from './GettingStarted'
 import OpenDialog from './OpenDialog'
 import HelpDialog from './HelpDialog'
+import AboutDialog from './AboutDialog'
 
 export default {
   components: {
     GettingStarted,
     OpenDialog,
-    HelpDialog
+    HelpDialog,
+    AboutDialog
   },
 
   data () {
