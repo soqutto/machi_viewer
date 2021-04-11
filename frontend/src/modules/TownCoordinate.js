@@ -8,6 +8,7 @@ class TownCoordinate{
     }
 
     async createTable(parser){
+        this.clear()
         const city = parser.city;
         const towns = city.towns;
         const tj = parser.json;
@@ -62,6 +63,10 @@ class TownCoordinate{
 
     getTownSubAreaCenterPoint(townSubAreaId){
         return this.townSubAreaCenterPointTable[townSubAreaId];
+    }
+
+    clear () {
+        this.constructor()
     }
 
 }

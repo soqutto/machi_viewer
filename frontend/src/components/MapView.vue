@@ -3,11 +3,13 @@
 </template>
 
 <script>
-import {main} from '@/modules/Map.js'
+// import {main} from '@/modules/Map.js'
+import MapView from '@/modules/MapView'
 
 export default {
   mounted () {
-    main()
+    MapView.attach('map')
+    // main()
   }
 }
 </script>

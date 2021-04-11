@@ -3,20 +3,21 @@ import {City} from "./TownClass"
 
 class TownParser{
     constructor(){
-        this.jsonFilePath = "";
-        this.jsonFileURI = "";
+        // this.jsonFilePath = "";
+        // this.jsonFileURI = "";
         this.jsonData = null;
         this.city = null;
     }
 
-    async load(jsonURI){
-        this.jsonFileURI = jsonURI;
-        const response = await fetch(this.jsonFileURI, {mode: 'no-cors'});
-        const data = await response.json();
-        this.jsonData = data;
+    async load(json){
+        // this.jsonFileURI = jsonURI;
+        // const response = await fetch(this.jsonFileURI, {mode: 'no-cors'});
+        // const data = await response.json();
     }
 
-    async parse(tp){
+    async parse(json){
+        this.clear()
+        this.jsonData = json;
         this.city = new City(this.json.objects.city.geometries[0].properties, this.json.bbox);
 
         const regExpTownSubName = new RegExp('[０-９]+丁目$');

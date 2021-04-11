@@ -26,6 +26,13 @@ class City{
         return [this.W, this.N, this.E, this.S]; 
     }
 
+    get latLngBounds () {
+        return [
+            [this.N, this.W],
+            [this.S, this.E]
+        ]
+    }
+
     addTownArea(townAreaId, townName){
         if(!this.towns.hasOwnProperty(townAreaId)){
             this.towns[townAreaId] = new TownArea(townAreaId, townName);

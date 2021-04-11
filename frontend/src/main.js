@@ -5,7 +5,13 @@ import VueMq from 'vue-mq'
 import App from './App'
 // import router from './router'
 
-import AppStateStore from './modules/AppStateStore'
+import AppStateStore from '@/modules/AppStateStore'
+import JSONDataStore from '@/modules/JSONDataStore'
+import TownParser from '@/modules/TownParser'
+import TownCoordinate from '@/modules/TownCoordinate'
+import TownColorizer from '@/modules/TownColorizer'
+import MapView from '@/modules/MapView'
+
 Vue.observable(AppStateStore)
 
 Vue.config.productionTip = false
@@ -40,6 +46,15 @@ new Vue({
     },
     toggleDialogState: function (dialogName) {
       AppStateStore.toggleDialogState(dialogName)
+    },
+    openCity: async function (cityId) {
+      MapView.reset()
+      const json = await JSONDataStore.load(cityId)
+      await TownParser.parse(json)
+      await TownCoordinate.createTable(TownParser)
+      await TownColorizer.createTable(TownParser.city.getTownAreaList())
+      MapView.fitBounds(TownParser.city.latLngBounds)
+      await MapView.draw()
     }
 
   }

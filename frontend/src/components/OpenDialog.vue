@@ -26,7 +26,11 @@
                 (record.gst_name ? record.gst_name : '') +
                 (record.css_name ? record.css_name : '')
               }}
-              <button type="button" class="btn btn-primary btn-sm">開く</button>
+              <button
+                type="button"
+                v-bind:name="record.city_id"
+                @click="pushButton(record.city_id)"
+                class="btn btn-primary btn-sm">開く</button>
               </td>
             </tr>
           </template>
@@ -80,6 +84,11 @@ export default {
       }).then(res => {
         this.results = res.data
       })
+    },
+
+    pushButton (cityId) {
+      this.$root.setDialogState('openDialog', false)
+      this.$root.openCity(cityId)
     }
   },
 

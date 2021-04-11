@@ -17,6 +17,7 @@ class TownColorizer{
     }
 
     async createTable(townAreaList){
+        this.clear()
         const keys = Object.keys(townAreaList);
         let color = 0;
         keys.forEach((key) => {
@@ -47,6 +48,10 @@ class TownColorizer{
         } else {
             return "#333333";
         }
+    }
+
+    clear () {
+        this.constructor()
     }
 }
 

@@ -32,6 +32,11 @@ class State {
         loading: {
           isShown: false
         }
+      },
+      data: {
+        isLoading: false,
+        cityId: null,
+        cityName: ''
       }
     }
   }

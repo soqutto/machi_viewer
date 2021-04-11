@@ -7,7 +7,7 @@
         button-style="primary"
         button-label="開く"
         binded-dialog-name="openDialog"></nav-bar-modal-button>
-      <span class="text"> ○○県○○市 </span>
+      <span class="text">{{this.$root.$data.state.data.cityName}}</span>
     </div>
     <div class="col-sm-6 text-right">
     <!--
