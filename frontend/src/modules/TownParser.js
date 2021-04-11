@@ -25,7 +25,7 @@ class TownParser{
 
         for(const geometry of this.json.objects.town.geometries){
             const gp = geometry.properties;
-            const S_NAME = gp.S_NAME;
+            const S_NAME = gp.S_NAME ? gp.S_NAME : '';
             const regExpMatch = S_NAME.match(regExpTownSubName);
             let townName, townSubName, townNumber;
             if(regExpMatch == null){
