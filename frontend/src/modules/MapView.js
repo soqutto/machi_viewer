@@ -39,11 +39,11 @@ class MapView {
   async draw () {
     await this.drawer.clear()
     await this.drawer.drawInit()
-    this.map.on('moveend', () => this.drawer.drawUpdate())
+    this.map.on('moveend', this.drawer.drawUpdate.bind(this.drawer))
   }
 
   async reset () {
-    this.map.on('moveend', () => {})
+    this.map.off('moveend', this.drawer.drawUpdate.bind(this.drawer))
     await this.drawer.clear()
   }
 
