@@ -58,102 +58,114 @@ class MapDrawer {
   }
 
   async drawInit () {
-    this.geoJsonCity = topojson.feature(TownParser.json, TownParser.json.objects.city);
-    this.geoJsonTown = topojson.feature(TownParser.json, TownParser.json.objects.town);
-    this.cityFramePolygon = this.cityGroup.selectAll("path")
-                           .data(this.geoJsonCity.features)
-                           .enter()
-                           .append("path");
-    this.townPolygons = this.townGroup.selectAll("path")
-                       .data(this.geoJsonTown.features)
-                       .enter()
-                       .append("path");
-    this.townLabels = this.townLabelGroup.selectAll("text")
-                      .data(Object.keys(TownCoordinate.getTownCenterPointTable()))
-                      .enter()
-                      .append("text");
-    this.townSubAreaLabels = this.townSubAreaLabelGroup.selectAll("text")
-                             .data(Object.keys(TownCoordinate.getTownSubAreaCenterPointTable()))
-                             .enter()
-                             .append("text");
-    this.bounds = this.path.bounds(this.geoJsonCity);
+    this.geoJsonCity = topojson.feature(TownParser.json, TownParser.json.objects.city)
+    this.geoJsonTown = topojson.feature(TownParser.json, TownParser.json.objects.town)
+    this.cityFramePolygon =
+      this.cityGroup.selectAll('path')
+        .data(this.geoJsonCity.features)
+        .enter()
+        .append('path')
+    this.townPolygons =
+      this.townGroup.selectAll('path')
+        .data(this.geoJsonTown.features)
+        .enter()
+        .append('path')
+    this.townLabels =
+      this.townLabelGroup.selectAll('text')
+        .data(Object.keys(TownCoordinate.getTownCenterPointTable()))
+        .enter()
+        .append('text')
+    this.townSubAreaLabels =
+      this.townSubAreaLabelGroup.selectAll('text')
+        .data(Object.keys(TownCoordinate.getTownSubAreaCenterPointTable()))
+        .enter()
+        .append('text')
+    this.bounds = this.path.bounds(this.geoJsonCity)
 
-    const topLeft = this.bounds[0], bottomRight = this.bounds[1];
+    const topLeft = this.bounds[0]
+    const bottomRight = this.bounds[1]
 
-    this.svgRootElement.attr("width", bottomRight[0] - topLeft[0])
-                       .attr("height", bottomRight[1] - topLeft[1])
-                       .style("left", topLeft[0] + "px")
-                       .style("top", topLeft[1] + "px");
+    this.svgRootElement
+      .attr('width', bottomRight[0] - topLeft[0])
+      .attr('height', bottomRight[1] - topLeft[1])
+      .style('left', topLeft[0] + 'px')
+      .style('top', topLeft[1] + 'px')
 
-    this.cityFramePolygon.attr("d", this.path)
-                         .style("fill", "none")
-                         .attr("stroke", "#888888")
-                         .attr("stroke-width", "4.0");
+    this.cityFramePolygon
+      .attr('d', this.path)
+      .style('fill', 'none')
+      .attr('stroke', '#888888')
+      .attr('stroke-width', '4.0')
 
-    this.cityGroup.attr("transform", "translate(" + -topLeft[0] + ","
-                                                  + -topLeft[1] + ")");
+    this.cityGroup
+      .attr('transform', 'translate(' + -topLeft[0] + ',' + -topLeft[1] + ')')
 
-    this.townPolygons.attr("class", (d) => "town-" + d.properties.KCODE1)
-                     .attr("fill", (d) => {
-                       const k = d.properties.KCODE1;
-                       const normalizedTownId = TownParser.city.getTownById(k).getTownSubAreaById(k).id;
-                       return TownColorizer.getColor(normalizedTownId);
-                     })
-                     .attr("stroke", "#666666")
-                     .attr("stroke-width", "1.4")
-                     .style("fill-opacity", 0.5)
-                     .attr("d", this.path);
+    this.townPolygons
+      .attr('class', (d) => 'town-' + d.properties.KCODE1)
+      .attr('fill', (d) => {
+        const k = d.properties.KCODE1
+        const normalizedTownId = TownParser.city.getTownById(k).getTownSubAreaById(k).id
+        return TownColorizer.getColor(normalizedTownId)
+      })
+      .attr('stroke', '#666666')
+      .attr('stroke-width', '1.4')
+      .style('fill-opacity', 0.5)
+      .attr('d', this.path)
 
-    this.townLabels.attr("x", (d) => this.project(...TownCoordinate.getTownCenterPoint(d))[0])
-                   .attr("y", (d) => this.project(...TownCoordinate.getTownCenterPoint(d))[1]-10)
-                   .attr("font-family", "sans-serif")
-                   .attr("font-weight", "bold")
-                   .attr("font-size", 20)
-                   .attr("text-anchor", "middle")
-                   .attr("stroke", "black")
-                   .attr("stroke-width", 0.1)
-                   .attr("fill", (d) => {
-                     return TownColorizer.getTownColor(d, -0.3);
-                   })
-                   .text((d) => {
-                     return TownParser.city.getTownAreaList()[d].name;
-                   });
+    this.townLabels
+      .attr('x', (d) => this.project(...TownCoordinate.getTownCenterPoint(d))[0])
+      .attr('y', (d) => this.project(...TownCoordinate.getTownCenterPoint(d))[1] - 10)
+      .attr('font-family', 'sans-serif')
+      .attr('font-weight', 'bold')
+      .attr('font-size', 20)
+      .attr('text-anchor', 'middle')
+      .attr('stroke', 'black')
+      .attr('stroke-width', 0.1)
+      .attr('fill', (d) => {
+        return TownColorizer.getTownColor(d, -0.3)
+      })
+      .text((d) => {
+        return TownParser.city.getTownAreaList()[d].name
+      })
 
-    this.townSubAreaLabels.attr("x", (d) => this.project(...TownCoordinate.getTownSubAreaCenterPoint(d))[0])
-                          .attr("y", (d) => this.project(...TownCoordinate.getTownSubAreaCenterPoint(d))[1]-5)
-                          .attr("font-family", "sans-serif")
-                          .attr("font-size", 10)
-                          .attr("text-anchor", "middle")
-                          .attr("fill", "black")
-                          .attr("display", () => {
-                            return (this.mapObject.getZoom() >= 15) ? 'inline' : 'none'
-                          })
-                          .text((d) => {
-                            return TownParser.city.getTownById(d).getTownSubAreaById(d).subName;
-                          })
+    this.townSubAreaLabels
+      .attr('x', (d) => this.project(...TownCoordinate.getTownSubAreaCenterPoint(d))[0])
+      .attr('y', (d) => this.project(...TownCoordinate.getTownSubAreaCenterPoint(d))[1] - 5)
+      .attr('font-family', 'sans-serif')
+      .attr('font-size', 10)
+      .attr('text-anchor', 'middle')
+      .attr('fill', 'black')
+      .attr('display', () => {
+        return (this.mapObject.getZoom() >= 15) ? 'inline' : 'none'
+      })
+      .text((d) => {
+        return TownParser.city.getTownById(d).getTownSubAreaById(d).subName
+      })
   }
 
   drawUpdate () {
-    this.bounds = this.path.bounds(this.geoJsonCity);
-    const topLeft = this.bounds[0], bottomRight = this.bounds[1];
-    this.svgRootElement.attr("width", bottomRight[0] - topLeft[0])
-           .attr("height", bottomRight[1] - topLeft[1])
-           .style("left", topLeft[0] + "px")
-           .style("top", topLeft[1] + "px");
-    this.cityGroup.attr("transform", "translate(" + -topLeft[0] + ","
-                                                  + -topLeft[1] + ")");
-    this.cityFramePolygon.attr("d", this.path)
-    this.townPolygons.attr("d", this.path);
-    
-    this.townLabels.attr("x", (d) => this.project(...TownCoordinate.getTownCenterPoint(d))[0])
-                   .attr("y", (d) => this.project(...TownCoordinate.getTownCenterPoint(d))[1]-10)
-    this.townSubAreaLabels.attr("x", (d) => this.project(...TownCoordinate.getTownSubAreaCenterPoint(d))[0])
-                          .attr("y", (d) => this.project(...TownCoordinate.getTownSubAreaCenterPoint(d))[1]-5)
-                          .attr("display", () => {
-                            return (this.mapObject.getZoom() >= 15) ? 'inline' : 'none'
-                          })
-    
+    this.bounds = this.path.bounds(this.geoJsonCity)
+    const topLeft = this.bounds[0]
+    const bottomRight = this.bounds[1]
+    this.svgRootElement
+      .attr('width', bottomRight[0] - topLeft[0])
+      .attr('height', bottomRight[1] - topLeft[1])
+      .style('left', topLeft[0] + 'px')
+      .style('top', topLeft[1] + 'px')
+    this.cityGroup
+      .attr('transform', 'translate(' + -topLeft[0] + ',' + -topLeft[1] + ')')
+    this.cityFramePolygon.attr('d', this.path)
+    this.townPolygons.attr('d', this.path)
 
+    this.townLabels
+      .attr('x', (d) => this.project(...TownCoordinate.getTownCenterPoint(d))[0])
+      .attr('y', (d) => this.project(...TownCoordinate.getTownCenterPoint(d))[1] - 10)
+    this.townSubAreaLabels
+      .attr('x', (d) => this.project(...TownCoordinate.getTownSubAreaCenterPoint(d))[0])
+      .attr('y', (d) => this.project(...TownCoordinate.getTownSubAreaCenterPoint(d))[1] - 5)
+      .attr('display', () => {
+        return (this.mapObject.getZoom() >= 15) ? 'inline' : 'none'
+      })
   }
 
   async clear () {
