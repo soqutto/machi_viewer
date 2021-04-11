@@ -58,17 +58,18 @@ class TownCoordinate{
     }
 
     getTownCenterPoint(townId){
+        if(!this.townCenterPointTable.hasOwnProperty(townId)) return [0, 0]
         return this.townCenterPointTable[townId];
     }
 
     getTownSubAreaCenterPoint(townSubAreaId){
+        if(!this.townSubAreaCenterPointTable.hasOwnProperty(townSubAreaId)) return [0, 0]
         return this.townSubAreaCenterPointTable[townSubAreaId];
     }
 
     clear () {
         this.constructor()
     }
-
 }
 
 // Singleton class
