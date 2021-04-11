@@ -48,7 +48,7 @@ new Vue({
       AppStateStore.toggleDialogState(dialogName)
     },
     openCity: async function (cityId) {
-      MapView.reset()
+      await MapView.reset()
       const json = await JSONDataStore.load(cityId)
       await TownParser.parse(json)
       await TownCoordinate.createTable(TownParser)
