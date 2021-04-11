@@ -125,6 +125,9 @@ class MapDrawer {
                           .attr("font-size", 10)
                           .attr("text-anchor", "middle")
                           .attr("fill", "black")
+                          .attr("display", () => {
+                            return (this.mapObject.getZoom() >= 15) ? 'inline' : 'none'
+                          })
                           .text((d) => {
                             return TownParser.city.getTownById(d).getTownSubAreaById(d).subName;
                           })
@@ -141,10 +144,15 @@ class MapDrawer {
                                                   + -topLeft[1] + ")");
     this.cityFramePolygon.attr("d", this.path)
     this.townPolygons.attr("d", this.path);
+    
     this.townLabels.attr("x", (d) => this.project(...TownCoordinate.getTownCenterPoint(d))[0])
                    .attr("y", (d) => this.project(...TownCoordinate.getTownCenterPoint(d))[1]-10)
     this.townSubAreaLabels.attr("x", (d) => this.project(...TownCoordinate.getTownSubAreaCenterPoint(d))[0])
                           .attr("y", (d) => this.project(...TownCoordinate.getTownSubAreaCenterPoint(d))[1]-5)
+                          .attr("display", () => {
+                            return (this.mapObject.getZoom() >= 15) ? 'inline' : 'none'
+                          })
+    
 
   }
 
