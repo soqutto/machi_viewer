@@ -1,38 +1,40 @@
-const state = {
-  debug: process.env.NODE_ENV !== 'production',
-  version: '0.1.0',
-  buildDate: '2021/4/10',
-  dialogs: [
-    'gettingStarted',
-    'openDialog',
-    'settingDialog',
-    'helpDialog',
-    'aboutDialog',
-    'loading'
-  ],
-  state: {
-    modal: {
-      isShown: true,
-      gettingStarted: {
-        isShown: true
-      },
-      openDialog: {
-        isShown: false
-      },
-      settingDialog: {
-        isShown: false
-      },
-      helpDialog: {
-        isShown: false
-      },
-      aboutDialog: {
-        isShown: false
-      },
-      loading: {
-        isShown: false
+class State {
+  constructor () {
+    this.debug = process.env.NODE_ENV !== 'production'
+    this.version = '0.1.0'
+    this.buildDate = '2021/4/10'
+    this.dialogs = [
+      'gettingStarted',
+      'openDialog',
+      'settingDialog',
+      'helpDialog',
+      'aboutDialog',
+      'loading'
+    ]
+    this.state = {
+      modal: {
+        isShown: true,
+        gettingStarted: {
+          isShown: true
+        },
+        openDialog: {
+          isShown: false
+        },
+        settingDialog: {
+          isShown: false
+        },
+        helpDialog: {
+          isShown: false
+        },
+        aboutDialog: {
+          isShown: false
+        },
+        loading: {
+          isShown: false
+        }
       }
     }
-  },
+  }
 
   setDialogState (dialogName, bool) {
     if (this.debug) console.log('setDialogState triggered with', dialogName, bool)
@@ -45,7 +47,7 @@ const state = {
     } else {
       this.state.modal[dialogName].isShown = false
     }
-  },
+  }
 
   toggleDialogState (dialogName) {
     if (this.debug) console.log('toggleDialogState triggered with', dialogName)
@@ -64,4 +66,4 @@ const state = {
   }
 }
 
-export default state
+export default new State()
