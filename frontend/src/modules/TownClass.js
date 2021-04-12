@@ -59,6 +59,10 @@ class City {
     this.townHash[townId] = townAreaId
   }
 
+  setTownNameHash (townName, townAreaId) {
+    this.townNameHash[townAreaId] = townName
+  }
+
   getTownAreaList () {
     return this.towns
   }
@@ -144,6 +148,10 @@ class TownArea {
     parent.households += households
   }
 
+  setName (name) {
+    this.townName = name
+  }
+
   getTownSubAreaList () {
     return this.townSubAreas
   }
@@ -196,6 +204,11 @@ class TownSubArea {
     this.area += area
     this.population += population
     this.households += households
+  }
+
+  setName (townName, townSubName) {
+    this.townName = townName
+    this.townSubName = townSubName
   }
 
   get name () { return this.townName }

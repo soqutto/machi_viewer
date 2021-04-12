@@ -104,6 +104,58 @@ class TownParser {
       this.city.getTownByName(townName)
         .addTownSubArea(this.city, gp.KCODE1, townName, townSubName, townNumber, gp.AREA, gp.JINKO, gp.SETAI)
     }
+
+    // Rebase townArea and townSubArea relations
+    const townAreaList = this.city.getTownAreaList()
+
+    Object.keys(townAreaList).forEach((key) => {
+      const townSubAreaList = townAreaList[key].getTownSubAreaList()
+      const townSubAreaNames = []
+      Object.keys(townSubAreaList).forEach((subKey) => {
+        townSubAreaNames.push(townSubAreaList[subKey].name)
+      })
+
+      let prevName
+      let toBeRebased = false
+      if (townSubAreaNames.length > 0) prevName = townSubAreaNames[0]
+      for (const name of townSubAreaNames) {
+        if (name !== prevName) {
+          toBeRebased = true
+          break
+        }
+        prevName = name
+      }
+
+      if (toBeRebased) {
+        const reducer = (accum, current) => {
+          return Math.max(accum, current.length)
+        }
+        const maxLen = townSubAreaNames.reduce(reducer, 0)
+        let commonLength = 1
+        for (let i = 1; i <= maxLen; i++) {
+          const commonString = townSubAreaNames[0].substr(0, i)
+          const commonReducer = (accum, currentSubArea) => {
+            if (!accum) return false
+            else return commonString === currentSubArea.substr(0, i)
+          }
+          const isCommon = townSubAreaNames.reduce(commonReducer, true)
+          if (isCommon) commonLength = i
+          else break
+        }
+
+        Object.keys(townSubAreaList).forEach((subKey) => {
+          const name = townSubAreaList[subKey].fullName
+          townSubAreaList[subKey].setName(
+            name.substr(0, commonLength),
+            name.substr(commonLength)
+          )
+        })
+
+        const newName = townAreaList[key].name.substr(0, commonLength)
+        townAreaList[key].setName(newName)
+        this.city.setTownNameHash(key, newName)
+      }
+    })
   }
 
   clear () { this.constructor() }
