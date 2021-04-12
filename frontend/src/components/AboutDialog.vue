@@ -12,7 +12,7 @@
         <h3>バージョン情報</h3>
         <p>
           まちビューア(β) Version {{this.$root.$data.version}} ({{this.$root.$data.buildDate}})<br>
-          &copy; tsuchiden (<a href="https://twitter.com/soqutto" target="_blank">@soqutto</a>)
+          &copy; tsuchiden (<a href="https://twitter.com/soqu__plusplus" target="_blank">@soqu__plusplus</a>)
         </p>
         <h3>対応環境</h3>
         <h5>デスクトップ</h5>
