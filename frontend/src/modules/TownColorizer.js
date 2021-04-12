@@ -23,9 +23,10 @@ class TownColorizer {
       this.townColorTable[key] = this.baseColorTable[color]
       let subcolor = 0
       const townSubAreaList = townAreaList[key].getTownSubAreaList()
+      const subAreaNum = townAreaList[key].townSubAreaNum
       const subAreaKeys = Object.keys(townSubAreaList)
       subAreaKeys.forEach((subkey) => {
-        this.townSubAreaColorTable[subkey] = this.baseColorTable[color].darken(subcolor * 0.3)
+        this.townSubAreaColorTable[subkey] = this.baseColorTable[color].darken(subcolor / subAreaNum * 2.0)
         subcolor++
       })
       color++
