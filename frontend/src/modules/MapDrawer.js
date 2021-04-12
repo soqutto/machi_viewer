@@ -117,13 +117,14 @@ class MapDrawer {
       .attr('y', (d) => this.project(...TownCoordinate.getTownCenterPoint(d))[1] - 10)
       .attr('font-family', 'sans-serif')
       .attr('font-weight', 'bold')
-      .attr('font-size', 20)
+      .attr('font-size', 15)
       .attr('text-anchor', 'middle')
       .attr('stroke', 'black')
       .attr('stroke-width', 0.1)
       .attr('fill', (d) => {
         return TownColorizer.getTownColor(d, -0.3)
       })
+      .attr('display', 'inline')
       .text((d) => {
         return TownParser.city.getTownAreaList()[d].name
       })
@@ -135,12 +136,12 @@ class MapDrawer {
       .attr('font-size', 10)
       .attr('text-anchor', 'middle')
       .attr('fill', 'black')
-      .attr('display', () => {
-        return (this.mapObject.getZoom() >= 15) ? 'inline' : 'none'
-      })
+      .attr('display', 'inline')
       .text((d) => {
         return TownParser.city.getTownById(d).getTownSubAreaById(d).subName
       })
+
+    this.drawUpdate()
   }
 
   drawUpdate () {
@@ -157,14 +158,19 @@ class MapDrawer {
     this.cityFramePolygon.attr('d', this.path)
     this.townPolygons.attr('d', this.path)
 
+    const zoomLevel = this.mapObject.getZoom()
+
     this.townLabels
       .attr('x', (d) => this.project(...TownCoordinate.getTownCenterPoint(d))[0])
       .attr('y', (d) => this.project(...TownCoordinate.getTownCenterPoint(d))[1] - 10)
+      .attr('display', () => {
+        return (zoomLevel >= 13) ? 'inline' : 'none'
+      })
     this.townSubAreaLabels
       .attr('x', (d) => this.project(...TownCoordinate.getTownSubAreaCenterPoint(d))[0])
       .attr('y', (d) => this.project(...TownCoordinate.getTownSubAreaCenterPoint(d))[1] - 5)
       .attr('display', () => {
-        return (this.mapObject.getZoom() >= 15) ? 'inline' : 'none'
+        return (zoomLevel >= 15) ? 'inline' : 'none'
       })
   }
 
