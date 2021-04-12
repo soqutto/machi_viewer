@@ -2,7 +2,10 @@
   <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-lg">
     <div class="modal-content fixed-height">
       <div class="modal-header">
-        <h2>市区町村を検索</h2>
+        <h2>
+          <i class="bi-folder2-open"></i>
+          市区町村を検索
+        </h2>
         <ModalCloseButton bindedDialogName="openDialog"></ModalCloseButton>
       </div>
       <div class="modal-header">

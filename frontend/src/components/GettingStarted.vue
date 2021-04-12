@@ -11,7 +11,6 @@
           このサービスでは、町丁ごとに色分けされた地図を自動で生成して表示します。
         </p>
         <h4>早速使ってみましょう！</h4>
-        <div class="container">
         <ul class="list-group">
           <li class="list-group-item list-group-item-primary">
             画面左上の
@@ -38,7 +37,6 @@
             をクリックすることでご覧になれます。
           </li>
         </ul>
-        </div>
       </div>
     </div>
   </div>
