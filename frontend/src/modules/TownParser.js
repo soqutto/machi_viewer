@@ -20,7 +20,7 @@ class TownParser{
         this.jsonData = json;
         this.city = new City(this.json.objects.city.geometries[0].properties, this.json.bbox);
 
-        const regExpTownSubName = new RegExp('[０-９]+丁目$');
+        const regExpTownSubName = new RegExp('[０-９]+丁目?$');
         const regExpTownNumber = new RegExp('[０-９]+');
 
         for(const geometry of this.json.objects.town.geometries){
