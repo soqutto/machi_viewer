@@ -47,6 +47,9 @@ new Vue({
     toggleDialogState: function (dialogName) {
       AppStateStore.toggleDialogState(dialogName)
     },
+    setCityName: function (name) {
+      AppStateStore.setCityName(name)
+    },
     openCity: async function (cityId) {
       await MapView.reset()
       const json = await JSONDataStore.load(cityId)
@@ -55,6 +58,7 @@ new Vue({
       await TownColorizer.createTable(TownParser.city.getTownAreaList())
       MapView.fitBounds(TownParser.city.latLngBounds)
       await MapView.draw()
+      this.setCityName(TownParser.cityFullName)
     }
 
   }

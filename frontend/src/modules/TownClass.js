@@ -5,6 +5,9 @@ class City{
         this.cityId = properties.CITY;
         this.prefectureName = properties.PREF_NAME;
         this.cityName = properties.CITY_NAME;
+        this.sityoName = properties.SITYO_NAME
+        this.gstName = properties.GST_NAME
+        this.cssName = properties.CSS_NAME
 
         this.towns = {};
         this.townNameHash = {};
@@ -31,6 +34,14 @@ class City{
             [this.N, this.W],
             [this.S, this.E]
         ]
+    }
+
+    get cityFullName () {
+        return (
+            this.prefectureName +
+            (this.gstName ? this.gstName : '') +
+            (this.cssName ? this.cssName : '')
+        )
     }
 
     addTownArea(townAreaId, townName){

@@ -56,6 +56,9 @@ class TownParser{
 
     get json(){ return this.jsonData }
     get hierarchy(){ return this.city }
+    get cityFullName () {
+        return this.city.cityFullName
+    }
 
 }
 

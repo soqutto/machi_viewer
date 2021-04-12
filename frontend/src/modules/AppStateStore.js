@@ -69,6 +69,10 @@ class State {
       this.state.modal[dialogName].isShown = true
     }
   }
+
+  setCityName (name) {
+    this.state.data.cityName = name
+  }
 }
 
 export default new State()
