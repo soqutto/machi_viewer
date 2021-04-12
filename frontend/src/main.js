@@ -59,7 +59,8 @@ new Vue({
       MapView.fitBounds(TownParser.city.latLngBounds)
       await MapView.draw()
       this.setCityName(TownParser.cityFullName)
-    }
 
+      if (AppStateStore.debug) console.log(TownParser)
+    }
   }
 })
