@@ -27,6 +27,16 @@
           <li class="list-group-item list-group-item-primary">
             地図は自由にスクロールおよび拡大縮小ができます。
           </li>
+          <li class="list-group-item list-group-item-info">
+            <i class="bi-info-circle"></i>
+            設定画面にて背景の地図をOpenStreetMap, 地理院地図(標準/淡色)の3種類から選べます。
+          </li>
+          <li class="list-group-item list-group-item-info">
+            <i class="bi-info-circle"></i>
+            設定画面にて町域グループ/町丁ラベルの表示/非表示が切り替えられます。<br>
+            背景地図にすでに町域・町丁が表示されている場合に非表示にすると便利です。<br>
+            表示が重い場合、ラベルを非表示にすると改善する場合があります。
+          </li>
         </ul>
       </div>
     </div>
