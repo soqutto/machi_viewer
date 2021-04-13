@@ -12,7 +12,8 @@
         <h3>バージョン情報</h3>
         <p>
           まちビューア(β) Version {{this.$root.$data.version}} ({{this.$root.$data.buildDate}})<br>
-          &copy; tsuchiden (<a href="https://twitter.com/soqu__plusplus" target="_blank">@soqu__plusplus</a>)
+          &copy; tsuchiden (<a href="https://twitter.com/soqu__plusplus" target="_blank">@soqu__plusplus</a>)<br>
+          <a href="https://github.com/soqutto/machi_viewer" target="_blank">GitHub</a>
         </p>
         <h3>対応環境</h3>
         <h5>デスクトップ</h5>
@@ -57,7 +58,9 @@
         </p>
         <h3>お問い合わせ</h3>
         <p>
-          不具合の報告・その他各種お問い合わせにつきましては, お問い合わせフォームからお願いいたします。
+          不具合の報告・その他各種お問い合わせにつきましては,
+          <a href="https://forms.gle/1qiWP5JsmgVJkfqQA" target="_blank">お問い合わせフォーム</a>
+          からお願いいたします。
         </p>
       </div>
     </div>

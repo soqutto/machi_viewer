@@ -4,9 +4,7 @@
       &copy; 2021 tsuchiden
     </div>
     <div>
-      ver. {{this.$root.$data.version}} &nbsp;
-      <a target="_blank" href="https://github.com/soqutto/machi_viewer/">Github</a> /
-      お問い合わせ
+      ver. {{this.$root.$data.version}}
     </div>
   </footer>
 </template>
