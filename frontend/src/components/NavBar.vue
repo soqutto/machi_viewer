@@ -10,14 +10,12 @@
       <span class="text">{{this.$root.$data.state.data.cityName}}</span>
     </div>
     <div class="col-sm-6 text-right">
-    <!--
       <nav-bar-modal-button
         v-bind:show-icon="true"
         bi-icon-class-name="bi-gear"
         button-style="light"
         button-label="設定"
         binded-dialog-name="settingDialog"></nav-bar-modal-button>
-     -->
       <nav-bar-modal-button
         v-bind:show-icon="true"
         bi-icon-class-name="bi-question-circle"
@@ -28,7 +26,6 @@
         v-bind:show-icon="true"
         bi-icon-class-name="bi-info-circle"
         button-style="light"
-        button-label="このサイトについて"
         binded-dialog-name="aboutDialog"></nav-bar-modal-button>
     </div>
   </nav>

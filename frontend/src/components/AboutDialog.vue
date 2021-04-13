@@ -4,7 +4,7 @@
       <div class="modal-header">
         <h2>
           <i class="bi-info-circle"></i>
-          このサイトについて
+          アプリについて
         </h2>
         <ModalCloseButton bindedDialogName="aboutDialog"></ModalCloseButton>
       </div>
@@ -28,7 +28,11 @@
           <ul>
             <li>
               <a href="https://www.openstreetmap.org/" target="_blank">OpenStreetMap</a>
-              &copy; OpenStreetMap contributors</li>
+              &copy; OpenStreetMap contributors
+            </li>
+            <li>
+              <a href="https://maps.gsi.go.jp/development/ichiran.html" target="_blank">地理院地図 地理院タイル</a>
+            </li>
             <li>
               <a href="https://geoshape.ex.nii.ac.jp/ka/" target="_blank">国勢調査町丁・字等別境界データセット</a>
               (CODH作成) <br>

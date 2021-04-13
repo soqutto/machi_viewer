@@ -37,6 +37,9 @@ class State {
         isLoading: false,
         cityId: null,
         cityName: ''
+      },
+      map: {
+        baseMapType: 'osm'
       }
     }
   }
