@@ -2,6 +2,7 @@ import L from 'leaflet'
 import * as d3 from 'd3'
 import * as topojson from 'topojson'
 
+import AppStateStore from './AppStateStore'
 import MapView from './MapView'
 import TownParser from './TownParser'
 import TownCoordinate from './TownCoordinate'
@@ -164,13 +165,13 @@ class MapDrawer {
       .attr('x', (d) => this.project(...TownCoordinate.getTownCenterPoint(d))[0])
       .attr('y', (d) => this.project(...TownCoordinate.getTownCenterPoint(d))[1] - 10)
       .attr('display', () => {
-        return (zoomLevel >= 13) ? 'inline' : 'none'
+        return (zoomLevel >= 13 && AppStateStore.state.map.showTownLabel) ? 'inline' : 'none'
       })
     this.townSubAreaLabels
       .attr('x', (d) => this.project(...TownCoordinate.getTownSubAreaCenterPoint(d))[0])
       .attr('y', (d) => this.project(...TownCoordinate.getTownSubAreaCenterPoint(d))[1] - 5)
       .attr('display', () => {
-        return (zoomLevel >= 15) ? 'inline' : 'none'
+        return (zoomLevel >= 15 && AppStateStore.state.map.showTownSubAreaLabel) ? 'inline' : 'none'
       })
   }
 

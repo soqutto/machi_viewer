@@ -54,6 +54,77 @@
             </div>
           </div>
         </fieldset>
+        <h3>ラベル表示設定</h3>
+        <p>
+          町域グループ、町丁ラベルの表示/非表示が切り替えられます。<br>
+          背景地図に丁番が表示されていて見づらいときはオフにしてください。
+        </p>
+        <div class="row">
+          <div class="col">
+            <fieldset>
+              <div class="form-group indented">
+                <label>町域グループラベル</label>
+                <div class="form-check indented">
+                  <input
+                    class="form-check-input"
+                    type="radio"
+                    name="show-townarea-label"
+                    id="show-townarea"
+                    value="true"
+                    v-model="townLabelShow"
+                  >
+                  <label class="form-check-label" for="show-townarea">
+                    表示する
+                  </label>
+                </div>
+                <div class="form-check indented">
+                  <input
+                    class="form-check-input"
+                    type="radio"
+                    name="show-townarea-label"
+                    id="hide-townarea"
+                    value="false"
+                    v-model="townLabelShow"
+                  >
+                  <label class="form-check-label" for="hide-townarea">
+                    表示しない
+                  </label>
+                </div>
+              </div>
+            </fieldset>
+          </div>
+          <div class="col">
+            <div class="form-group indented">
+              <label>町丁ラベル</label>
+              <div class="form-check indented">
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  name="show-townsubarea-label"
+                  id="show-townsubarea"
+                  value="true"
+                  v-model="townSubAreaLabelShow"
+                >
+                <label class="form-check-label" for="show-townarea">
+                  表示する
+                </label>
+              </div>
+              <div class="form-check indented">
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  name="show-townsubarea-label"
+                  id="hide-townsubarea"
+                  value="false"
+                  v-model="townSubAreaLabelShow"
+                >
+                <label class="form-check-label" for="hide-townarea">
+                  表示しない
+                </label>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -83,8 +154,25 @@ export default {
         this.state.map.baseMapType = baseMapType
         MapView.changeMap(baseMapType)
       }
+    },
+    townLabelShow: {
+      get () {
+        return this.state.map.showTownLabel ? 'true' : 'false'
+      },
+      set (bool) {
+        this.state.map.showTownLabel = bool === 'true'
+        if (this.state.map.townIsShown) MapView.drawer.drawUpdate()
+      }
+    },
+    townSubAreaLabelShow: {
+      get () {
+        return this.state.map.showTownSubAreaLabel ? 'true' : 'false'
+      },
+      set (bool) {
+        this.state.map.showTownSubAreaLabel = bool === 'true'
+        if (this.state.map.townIsShown) MapView.drawer.drawUpdate()
+      }
     }
-
   }
 }
 </script>

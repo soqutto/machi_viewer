@@ -52,6 +52,8 @@ new Vue({
     },
     openCity: async function (cityId) {
       await MapView.reset()
+      AppStateStore.setMapShowingState(false)
+
       const json = await JSONDataStore.load(cityId)
       await TownParser.parse(json)
       await TownCoordinate.createTable(TownParser)
@@ -60,6 +62,7 @@ new Vue({
       await MapView.draw()
       this.setCityName(TownParser.cityFullName)
 
+      AppStateStore.setMapShowingState(true)
       if (AppStateStore.debug) console.log(TownParser)
     }
   }

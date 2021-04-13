@@ -39,7 +39,10 @@ class State {
         cityName: ''
       },
       map: {
-        baseMapType: 'osm'
+        baseMapType: 'osm',
+        townIsShown: false,
+        showTownLabel: true,
+        showTownSubAreaLabel: true
       }
     }
   }
@@ -75,6 +78,10 @@ class State {
 
   setCityName (name) {
     this.state.data.cityName = name
+  }
+
+  setMapShowingState (bool) {
+    this.state.map.townIsShown = bool
   }
 }
 
