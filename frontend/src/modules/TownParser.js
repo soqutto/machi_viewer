@@ -108,6 +108,8 @@ class TownParser {
     // Rebase townArea and townSubArea relations
     const townAreaList = this.city.getTownAreaList()
 
+    // Detect common town name
+    // ex: 上賀茂OO町, 上賀茂XX町 etc...
     Object.keys(townAreaList).forEach((key) => {
       const townSubAreaList = townAreaList[key].getTownSubAreaList()
       const townSubAreaNames = []
@@ -141,6 +143,15 @@ class TownParser {
           const isCommon = townSubAreaNames.reduce(commonReducer, true)
           if (isCommon) commonLength = i
           else break
+        }
+
+        // Check the repeating common town name
+        // ex: 上賀茂上賀茂 etc...
+        if (commonLength % 2 === 0) {
+          const commonString = townSubAreaNames[0].substr(0, commonLength)
+          if (commonString.substr(0, commonLength / 2) === commonString.substr(commonLength / 2)) {
+            commonLength /= 2
+          }
         }
 
         Object.keys(townSubAreaList).forEach((subKey) => {
