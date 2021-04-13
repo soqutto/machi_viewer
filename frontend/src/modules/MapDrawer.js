@@ -122,7 +122,7 @@ class MapDrawer {
       .attr('stroke', 'black')
       .attr('stroke-width', 0.1)
       .attr('fill', (d) => {
-        return TownColorizer.getTownColor(d, -0.3)
+        return TownColorizer.getTownColor(d, -1.0)
       })
       .attr('display', 'inline')
       .text((d) => {
