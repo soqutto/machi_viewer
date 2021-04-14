@@ -7,7 +7,13 @@ const prefecturesRouter = require('./routes/prefectures');
 const searchRouter = require('./routes/search');
 const getRouter = require('./routes/getjson');
 
+const createRecord = require('./database/CreateRecord');
+
 const app = express();
+
+;(async () => {
+    await createRecord('./topojson');
+})();
 
 app.use(logger('dev'));
 app.use(express.json());
