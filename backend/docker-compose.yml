@@ -14,6 +14,8 @@ services:
       POSTGRES_DB: ${POSTGRES_DATABASE} 
       POSTGRES_INITDB_ARGS: "--encoding=UTF-8 --locale=C"
     hostname: postgres
+    networks:
+      - machi_viewer_backend
     restart: always
 
   pgadmin4:
@@ -27,6 +29,8 @@ services:
       PGADMIN_DEFAULT_EMAIL: ${PGADMIN_DEFAULT_EMAIL}
       PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_DEFAULT_PASSWORD}
     hostname: pgadmin4
+    networks:
+      - machi_viewer_backend
     depends_on:
       - database
     restart: always
@@ -45,9 +49,12 @@ services:
       POSTGRES_DB: ${POSTGRES_DATABASE}
       POSTGRES_PORT: ${POSTGRES_PORT}
     hostname: machi-viewer-api
+    networks:
+      - machi_viewer_backend
     depends_on:
       - database
     restart: always
-    
 
-  
+networks:
+  machi_viewer_backend:
+    external: true
