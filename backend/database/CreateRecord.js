@@ -96,11 +96,3 @@ async function createRecord(basedir){
 }
 
 module.exports = createRecord;
-
-/*
-const main = (() => {
-    createRecord('../topojson');
-});
-
-main();
-*/

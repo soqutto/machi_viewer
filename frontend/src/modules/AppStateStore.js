@@ -2,7 +2,7 @@ class State {
   constructor () {
     this.debug = process.env.NODE_ENV !== 'production'
     this.version = '0.1.0'
-    this.buildDate = '2021/4/10'
+    this.buildDate = '2021/4/16'
     this.dialogs = [
       'gettingStarted',
       'openDialog',

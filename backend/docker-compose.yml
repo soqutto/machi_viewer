@@ -14,11 +14,13 @@ services:
       POSTGRES_DB: ${POSTGRES_DATABASE} 
       POSTGRES_INITDB_ARGS: "--encoding=UTF-8 --locale=C"
     hostname: postgres
+    networks:
+      - machi_viewer_backend
     restart: always
 
   pgadmin4:
     container_name: pgadmin4
-    image: dpage/pdadmin4:latest
+    image: dpage/pgadmin4:5.1
     ports:
       - "8027:80"
     volumes:
@@ -27,6 +29,32 @@ services:
       PGADMIN_DEFAULT_EMAIL: ${PGADMIN_DEFAULT_EMAIL}
       PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_DEFAULT_PASSWORD}
     hostname: pgadmin4
+    networks:
+      - machi_viewer_backend
     depends_on:
-      - postgres
+      - database
     restart: always
+
+  apiserver:
+    container_name: machi_viewer_api
+    build: .
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./topojson:/app/topojson
+    environment:
+      POSTGRES_HOST: ${POSTGRES_HOST}
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DATABASE}
+      POSTGRES_PORT: ${POSTGRES_PORT}
+    hostname: machi-viewer-api
+    networks:
+      - machi_viewer_backend
+    depends_on:
+      - database
+    restart: always
+
+networks:
+  machi_viewer_backend:
+    external: true

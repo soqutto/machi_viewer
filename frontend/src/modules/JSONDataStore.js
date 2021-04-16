@@ -10,10 +10,10 @@ class JSONDataStore {
   async load (cityId) {
     const res = await axios.get(this.requestUrl, {
       params: {
-        id: cityId,
-        validateStatus: (status) => {
-          return status === 200
-        }
+        id: cityId
+      },
+      validateStatus: (status) => {
+        return status === 200
       }
     })
     this.json = res.data
