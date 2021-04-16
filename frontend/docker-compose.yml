@@ -5,8 +5,6 @@ services:
     build:
       context: .
       dockerfile: ./deployment.d/Dockerfile
-    ports:
-      - "80:80"
     volumes:
       - ./deployment.d/nginx.conf:/etc/nginx/nginx.conf:ro
     environment:
