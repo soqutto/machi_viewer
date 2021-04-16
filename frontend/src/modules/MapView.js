@@ -20,21 +20,21 @@ class MapView {
     this.drawer = new MapDrawer()
     this.overlaySvg = undefined
     this.osmLayer =
-      L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+      L.tileLayer('https://{s}.tile.osm.org/{z}/{x}/{y}.png', {
         attribution: '&copy; <a href="http://osm.org/copyright" target="_blank">OpenStreetMap</a> contributors<br>' +
              '<a href="https://geoshape.ex.nii.ac.jp/ka/" target="_blank">国勢調査町丁・字等別境界データセット(CODH)</a>',
         minZoom: 4,
         maxZoom: 18
       })
     this.gsiLayer =
-      L.tileLayer('http://cyberjapandata.gsi.go.jp/xyz/std/{z}/{x}/{y}.png', {
+      L.tileLayer('https://cyberjapandata.gsi.go.jp/xyz/std/{z}/{x}/{y}.png', {
         attribution: '&copy; <a href="https://maps.gsi.go.jp/development/ichiran.html" target="_blank">国土地理院</a> 標準地図<br>' +
              '<a href="https://geoshape.ex.nii.ac.jp/ka/" target="_blank">国勢調査町丁・字等別境界データセット(CODH)</a>',
         minZoom: 5,
         maxZoom: 18
       })
     this.gsiPaleLayer =
-      L.tileLayer('http://cyberjapandata.gsi.go.jp/xyz/pale/{z}/{x}/{y}.png', {
+      L.tileLayer('https://cyberjapandata.gsi.go.jp/xyz/pale/{z}/{x}/{y}.png', {
         attribution: '&copy; <a href="https://maps.gsi.go.jp/development/ichiran.html" target="_blank">国土地理院</a> 淡色地図<br>' +
              '<a href="https://geoshape.ex.nii.ac.jp/ka/" target="_blank">国勢調査町丁・字等別境界データセット(CODH)</a>',
         minZoom: 5,
